@@ -1,0 +1,67 @@
+body {
+  font-family: monospace;
+  background-color: #ddd;
+}
+
+label {
+  display: block;
+  width: 100%;
+}
+
+label time,
+label i {
+  vertical-align: bottom;
+}
+
+.selectize-control {
+  display: inline-block;
+  width: calc(100% - 8em);
+  vertical-align: top;
+}
+
+.selectize-dropdown, .selectize-input, .selectize-input input {
+  line-height: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+.selectize-control.multi .selectize-input>div {
+  width: 3ch;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0 1ch 0 0;
+  vertical-align: bottom;
+  border-left: .5ch solid #f2f2f2;
+  border-right: .5ch solid #f2f2f2;
+}
+
+.selectize-control.multi .selectize-input>div.active {
+  width: auto;
+  border-left: .5ch solid #e8e8e8;
+}
+
+.selectize-control.multi .selectize-input.items {
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  margin: 0;
+}
+
+.selectize-control.plugin-remove_button [data-value] .remove {
+  position: static;
+  display: inline;
+  text-align: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  vertical-align: text-top;
+  padding: 0 .5ch;
+  margin: 0 0 0 .5ch;
+  border-radius: 0;
+  border: none;
+  vertical-align: bottom;
+}
+
+.selectize-control.plugin-remove_button [data-value] {
+  position: static;
+  padding: 0 !important;
+}
