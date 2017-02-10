@@ -1,7 +1,7 @@
 var veg = [
-    { id: 1, text: 'Artichoke' }, 
-    { id: 2, text: 'Cabbage' }, 
-    { id: 3, text: 'Carrot' }, 
-    { id: 4, text: 'Onion' }, 
-    { id: 5, text: 'Peas' }
+    { id: 1, name: 'Artichoke' }, 
+    { id: 2, name: 'Cabbage' }, 
+    { id: 3, name: 'Sprouts' }, 
+    { id: 4, name: 'Onion' }, 
+    { id: 5, name: 'Peas' }
 ];

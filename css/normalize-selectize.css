@@ -1,18 +1,3 @@
-body {
-  font-family: monospace;
-  background-color: #ddd;
-}
-
-label {
-  display: block;
-  width: 100%;
-}
-
-label time,
-label i {
-  vertical-align: bottom;
-}
-
 .selectize-control {
   display: inline-block;
   width: calc(100% - 8em);
@@ -64,4 +49,8 @@ label i {
 .selectize-control.plugin-remove_button [data-value] {
   position: static;
   padding: 0 !important;
+}
+
+.selectize-dropdown {
+    position: static;
 }

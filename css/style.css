@@ -1,0 +1,13 @@
+body {
+  background-color: #ccc;
+}
+
+label {
+  font-family: 'Droid Sans Mono', monospace;
+  display: block;
+  width: 100%;
+}
+
+i {
+  font-style: normal;
+}
