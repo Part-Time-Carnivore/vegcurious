@@ -1,5 +1,6 @@
 $(document).ready(function () {
-    var day = 24*60*60*1000;
+  var day = 24*60*60*1000;
+  var today = new Date();
 
   // set previous date function
   function getPrevDate(currentDate) {
@@ -25,24 +26,35 @@ $(document).ready(function () {
     return dateFull;
   }
 
-  // loop through days
-  vegDays.forEach(function(d) {
-    var currentDate = d.date;
-    var currentDateFull = new Date(currentDate);
-    var prevDateFull = getPrevDate(currentDate);
-    // check if there's a gap between days
-    while (currentDateFull - prevDateFull > day) {
-      prevDateFull = missingDays(prevDateFull);
+  // loop through days function
+  function loopDays() {
+    vegDays.forEach(function(d) {
+      var currentDate = d.date;
+      var currentDateFull = new Date(currentDate);
+      var prevDateFull = getPrevDate(currentDate);
+      // check if there's a gap between days
+      while (currentDateFull - prevDateFull > day) {
+        prevDateFull = missingDays(prevDateFull);
+      }
+      // generate current day
+      var date = currentDate;
+      var count = d.veg.length;
+      loadDays(date, count);
+    });
+  }
+
+  // check localstorage for vegDavs
+  if (window.localStorage) {
+    if (localStorage.vegDays) {
+      loopDays();
     }
-    // generate current day
-    var date = currentDate;
-    var count = d.veg.length;
-    loadDays(date, count);
-  });
+    else {
+      loadDays(today.toISOString().split('T')[0], 0);
+    }
+  }
 
   // after loading days, add days up to today
   var prevDateFull = getPrevDate(Date());
-  var today = new Date();
   while (today - prevDateFull > day) {
     prevDateFull = missingDays(prevDateFull);
   }
