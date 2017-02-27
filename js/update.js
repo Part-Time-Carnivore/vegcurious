@@ -1,6 +1,3 @@
-// update counts
-
-
 $(document).ready(function () {
 
   // selection change event
