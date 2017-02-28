@@ -55,3 +55,8 @@
 .selectize-dropdown {
     position: static;
 }
+
+.selectize-input>input {
+  margin: 0 0.5ch 0 0 !important;
+  min-width: 0.5ch;
+}
