@@ -5,47 +5,41 @@ $(document).ready(function () {
 
     // generate vegDays
     vegDays = [];
-    var totalVeg = 0;
-    var totalDays = 0;
-    var average = 0;
+    totalVeg = 0;
     $('select').each(function() {
-      // add values to thisVeg array
+      // add selected values to thisVeg array
       var thisVeg = []
       $('option:selected', this).each(function() {
         var veg = parseInt(this.value)
         thisVeg.push(veg);
       });
-
-      // running totals for average
-      totalDays = totalDays + 1;
-      totalVeg = totalVeg + thisVeg.length;
-
-      //only get date and add to vegDays if there is thisVeg contains values
-      if (thisVeg.length != 0) {
+      // only get date and add to vegDays if there is thisVeg contains values
+      var count = thisVeg.length;
+      if (count != 0) {
         // get date
         var thisDate = $(this).attr('id');
-        // day object
+        // create vegDay object
         var vegDay = {};
         vegDay.date = thisDate;
         vegDay.veg = thisVeg;
+        // prepend vegDay to vegDays
         vegDays.unshift(vegDay);
       }
+      // keep running total
+      totalVeg = totalVeg + count;
     });
-
-    // average veg per day
-    average = (totalVeg / totalDays).toPrecision(3);
-    $('#average').html(average);
 
     // update localStorage
     if (window.localStorage) {
       localStorage.setItem('vegDays', JSON.stringify(vegDays));
     }
 
-    // count items
-    var count = $("+ .selectize-control .item", this).length;
-
     // update count html
+    var count = $("+ .selectize-control .item", this).length;
     $("+ .selectize-control + i", this).html(count);
+
+    // update average veg per day
+    average();
 
   })
 
