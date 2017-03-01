@@ -32,22 +32,21 @@ $(document).ready(function () {
 
   // load veg options
   veg.forEach(function(v) {
-    $('select')
-      .append('<option value="' + v.id + '">' + v.name + '</option>')
+    $('select').append('<option value="' + v.id + '">' + v.name + '</option>')
   });
 
   // load veg from vegDays
   vegDays.forEach(function(d) {
     d.veg.forEach(function(v) {
-      $('#' + d.date + ' option[value="' + v + '"]')
-        .attr("selected", "selected");
+      $('#' + d.date + ' option[value="' + v + '"]').attr("selected", "selected");
     });
   });
 
   // init selectize
-  $('select')
-    .selectize({
-      plugins: ['remove_button']
-    });
+  $('select').selectize({
+    plugins: ['remove_button']
+  });
 
+  // initial average 
+    average();
 });

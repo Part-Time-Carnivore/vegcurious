@@ -10,5 +10,6 @@ var veg = [
     { id: 9, name: 'Tomato' }, 
     { id: 10, name: 'Sweet Potato' }, 
     { id: 11, name: 'Cauliflower' },
-    { id: 12, name: 'Lettuce' }
+    { id: 12, name: 'Lettuce' },
+    { id: 13, name: 'Ginger' }
 ];
