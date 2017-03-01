@@ -1,11 +1,11 @@
 body {
-  background-color: #ccc;
+  background-color: #f0f0f0;
 }
 
 label {
   font-family: 'Droid Sans Mono', monospace;
   display: block;
-  width: 100%;
+  margin: 1ch 0;
 }
 
 i {

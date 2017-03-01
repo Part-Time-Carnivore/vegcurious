@@ -16,8 +16,9 @@
   white-space: nowrap;
   margin: 0 1ch 0 0;
   vertical-align: bottom;
-  border-left: .5ch solid #f2f2f2;
-  border-right: .5ch solid #f2f2f2;
+  background-color: #d2d2d2;
+  border-left: .5ch solid #d2d2d2;
+  border-right: .5ch solid #d2d2d2;
 }
 
 .selectize-control.multi .selectize-input>div.active {
