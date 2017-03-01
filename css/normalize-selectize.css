@@ -54,7 +54,10 @@
 }
 
 .selectize-dropdown {
-    position: static;
+  position: static;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .selectize-input>input {
