@@ -1,9 +1,9 @@
 // variables
 day = 24*60*60*1000;
 today = new Date();
-vegDays = [];
+stuffLog = [];
 totalDays = 0;
-totalVeg = 0;
+totalStuff = 0;
 
 // set previous date function
 function getPrevDate(currentDate) {
@@ -31,7 +31,7 @@ function missingDays(prevDateFull) {
 
 // loop through days function
 function loopDays() {
-    vegDays.forEach(function(d) {
+    stuffLog.forEach(function(d) {
         var currentDate = d.date;
         var currentDateFull = new Date(currentDate);
         var prevDateFull = getPrevDate(currentDate);
@@ -41,13 +41,22 @@ function loopDays() {
         }
         // generate current day
         var date = currentDate;
-        var count = d.veg.length;
-        totalVeg = totalVeg + count;
+        var count = d.stuff.length;
+        totalStuff = totalStuff + count;
         loadDays(date, count);
     });
 }
 
+// sort array of objects alphabetically by comparing item names
+function compare(a,b) {
+if (a.name < b.name)
+    return -1;
+if (a.name > b.name)
+    return 1;
+return 0;
+}
+
 function average() {
-  var average = (totalVeg / totalDays).toPrecision(3);
+  var average = (totalStuff / totalDays).toPrecision(3);
   $('#average').html(average);
 }

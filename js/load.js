@@ -1,12 +1,12 @@
 $(document).ready(function () {
 
-  // check localstorage to set vegDays
-  if (window.localStorage && localStorage.vegDays) {
-    vegDays = JSON.parse(localStorage['vegDays']);
+  // check localstorage to set stuffLog
+  if (window.localStorage && localStorage.myStuff) {
+    stuffLog = JSON.parse(localStorage['myStuff']);
   }
 
-  // if there is data in vegDays
-  if (vegDays.length) {
+  // if there is data in stuffLog
+  if (stuffLog.length) {
     // load all days
     loopDays();
   } else {
@@ -21,24 +21,17 @@ $(document).ready(function () {
   }
 
   // sort veg
-  function compare(a,b) {
-    if (a.name < b.name)
-      return -1;
-    if (a.name > b.name)
-      return 1;
-    return 0;
-  }
   veg.sort(compare);
 
   // load veg options
   veg.forEach(function(v) {
-    $('select').append('<option value="' + veg.indexOf(v) + '">' + v.name + '</option>')
+    $('select').append('<option value="' + v.id + '">' + v.name + '</option>')
   });
 
-  // load veg from vegDays
-  vegDays.forEach(function(d) {
-    d.veg.forEach(function(v) {
-      $('#' + d.date + ' option[value="' + v + '"]').attr('selected', 'selected');
+  // load stuff from stuffLog
+  stuffLog.forEach(function(d) {
+    d.stuff.forEach(function(s) {
+      $('#' + d.date + ' option[value="' + s + '"]').attr('selected', 'selected');
     });
   });
 

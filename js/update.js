@@ -3,42 +3,43 @@ $(document).ready(function () {
   // selection change event
   $("select").on("change", function (e) {
 
-    // generate vegDays
-    vegDays = [];
-    totalVeg = 0;
+    // generate stuffLog
+    stuffLog = [];
+    totalStuff = 0;
+
     $('select').each(function() {
-      // add selected values to thisVeg array
-      var thisVeg = []
+      // add selected values to thisStuff array
+      var thisStuff = []
       $('option:selected', this).each(function() {
-        var veg = parseInt(this.value)
-        thisVeg.push(veg);
+        var stuff = parseInt(this.value)
+        thisStuff.push(stuff);
       });
-      // only get date and add to vegDays if there is thisVeg contains values
-      var count = thisVeg.length;
+      // only get date and add to stuffLog if there is thisStuff contains values
+      var count = thisStuff.length;
       if (count != 0) {
         // get date
         var thisDate = $(this).attr('id');
-        // create vegDay object
-        var vegDay = {};
-        vegDay.date = thisDate;
-        vegDay.veg = thisVeg;
-        // prepend vegDay to vegDays
-        vegDays.unshift(vegDay);
+        // create entry object
+        var entry = {};
+        entry.date = thisDate;
+        entry.stuff = thisStuff;
+        // prepend entry to stuffLog
+        stuffLog.unshift(entry);
       }
       // keep running total
-      totalVeg = totalVeg + count;
+      totalStuff = totalStuff + count;
     });
 
     // update localStorage
     if (window.localStorage) {
-      localStorage.setItem('vegDays', JSON.stringify(vegDays));
+      localStorage.setItem('myStuff', JSON.stringify(stuffLog));
     }
 
     // update count html
     var count = $("+ .selectize-control .item", this).length;
     $("+ .selectize-control + i", this).html(count);
 
-    // update average veg per day
+    // update average stuff per day
     average();
 
   })
