@@ -32,7 +32,7 @@ $(document).ready(function () {
 
     // update localStorage
     if (window.localStorage) {
-      localStorage.setItem('myStuff', JSON.stringify(stuffLog));
+      localStorage.setItem('vegLog', JSON.stringify(stuffLog));
     }
 
     // update count html

@@ -1,8 +1,8 @@
 $(document).ready(function () {
 
   // check localstorage to set stuffLog
-  if (window.localStorage && localStorage.myStuff) {
-    stuffLog = JSON.parse(localStorage['myStuff']);
+  if (window.localStorage && localStorage.vegLog) {
+    stuffLog = JSON.parse(localStorage['vegLog']);
   }
 
   // if there is data in stuffLog

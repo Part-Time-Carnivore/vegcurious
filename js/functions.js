@@ -16,7 +16,7 @@ function getPrevDate(currentDate) {
 
 // load days function
 function loadDays(date, count) {
-    $('main').prepend('<label for="' + date + '"><time>' + date + '</time> <select id="' + date + '" multiple="multiple"><option value="" disabled selected style="display: none;">Add veg</option></select> <i>' + count + '</i></label>');
+    $('main').prepend('<label for="' + date + '"><time>' + date + '</time> <select id="' + date + '" multiple="multiple"><option value="" disabled selected style="display: none;">+</option></select> <i>' + count + '</i></label>');
     totalDays = totalDays + 1;
 }
 
