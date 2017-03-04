@@ -1,21 +1,17 @@
 $(document).ready(function () {
   stuffType = $('main').attr('id');
-
-  // get stuffLog
   getStuffLog();
-
-  //loop and load days up to today
   loadDays();
-
-  // load options
   loadOptions();
-
-  // load stuff from stuffLog
   loadStuff();
-
-  // init selectize
   initSelectize();
-
-  // initial average 
   average();
+  $("select").on("change", function (e) {
+    update();
+    storeStuffLog();
+    average();
+    // recount selected options for this select
+    var count = $("+ .selectize-control .item", this).length;
+    $("+ .selectize-control + i", this).html(count);
+  });
 });

@@ -19,6 +19,19 @@ function getStuffLog() {
   }
 }
 
+// update localstorage
+function storeStuffLog() {
+  switch(stuffType) {
+    case 'veg':
+      if (window.localStorage) {
+        localStorage.setItem('vegLog', JSON.stringify(stuffLog));
+      }
+      break;
+    default:
+      console.log('stuffType "' + stuffType + '" not available');
+  }
+}
+
 // set previous date function
 function getPrevDate(currentDate) {
   var prevDate = $('select:first-of-type').attr('id');
@@ -123,4 +136,32 @@ function initSelectize() {
 function average() {
   var average = (totalStuff / totalDays).toPrecision(3);
   $('#average').html(average);
+}
+
+function update() {
+  // generate stuffLog
+  stuffLog = [];
+  totalStuff = 0;
+  $('select').each(function() {
+    // add selected values to thisStuff array
+    var thisStuff = []
+    $('option:selected', this).each(function() {
+      var stuff = parseInt(this.value)
+      thisStuff.push(stuff);
+    });
+    // only get date and add to stuffLog if there is thisStuff contains values
+    var count = thisStuff.length;
+    if (count != 0) {
+      // get date
+      var thisDate = $(this).attr('id');
+      // create entry object
+      var entry = {};
+      entry.date = thisDate;
+      entry.stuff = thisStuff;
+      // prepend entry to stuffLog
+      stuffLog.unshift(entry);
+    }
+    // keep running total
+    totalStuff = totalStuff + count;
+  });
 }
