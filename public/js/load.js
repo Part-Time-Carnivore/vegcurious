@@ -1,45 +1,21 @@
 $(document).ready(function () {
+  stuffType = $('main').attr('id');
 
-  // check localstorage to set stuffLog
-  if (window.localStorage && localStorage.vegLog) {
-    stuffLog = JSON.parse(localStorage['vegLog']);
-  }
+  // get stuffLog
+  getStuffLog();
 
-  // if there is data in stuffLog
-  if (stuffLog.length) {
-    // load all days
-    loopDays();
-  } else {
-    // just load today
-    loadDays(today.toISOString().split('T')[0], 0);
-  }
+  //loop and load days up to today
+  loadDays();
 
-  // after loading days, add days up to today
-  var prevDateFull = getPrevDate(Date());
-  while (today - prevDateFull > day) {
-    prevDateFull = missingDays(prevDateFull);
-  }
-
-  // sort veg
-  veg.sort(compare);
-
-  // load veg options
-  veg.forEach(function(v) {
-    $('select').append('<option value="' + v.id + '">' + v.name + '</option>')
-  });
+  // load options
+  loadOptions();
 
   // load stuff from stuffLog
-  stuffLog.forEach(function(d) {
-    d.stuff.forEach(function(s) {
-      $('#' + d.date + ' option[value="' + s + '"]').attr('selected', 'selected');
-    });
-  });
+  loadStuff();
 
   // init selectize
-  $('select').selectize({
-    plugins: ['remove_button']
-  });
+  initSelectize();
 
   // initial average 
-    average();
+  average();
 });
