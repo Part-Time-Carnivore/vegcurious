@@ -5,11 +5,11 @@ $(document).ready(function () {
   loadOptions();
   loadStuff();
   initSelectize();
-  average();
+  stats();
   $("select").on("change", function (e) {
     update();
     storeStuffLog();
-    average();
+    stats();
     // recount selected options for this select
     var count = $("+ .selectize-control .item", this).length;
     $("+ .selectize-control + i", this).html(count);

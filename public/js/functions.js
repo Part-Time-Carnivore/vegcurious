@@ -4,6 +4,7 @@ today = new Date();
 stuffType = '';
 stuffLog = [];
 totalDays = 0;
+counts = [];
 totalStuff = 0;
 
 // get stuffLog from localstorage
@@ -44,6 +45,7 @@ function getPrevDate(currentDate) {
 // load days function
 function loadDay(date, count) {
   $('main').prepend('<label for="' + date + '"><time>' + date + '</time> <select id="' + date + '" multiple="multiple"><option value="" disabled selected style="display: none;">+</option></select> <i>' + count + '</i></label>');
+  counts.push(count);
   totalDays = totalDays + 1;
 }
 
@@ -51,7 +53,7 @@ function loadDay(date, count) {
 function missingDays(prevDateFull) {
   var dateFull = new Date(prevDateFull.getTime() + day);
   var date = dateFull.toISOString().split('T')[0];
-  var count = "0";
+  var count = 0;
   loadDay(date, count);
   return dateFull;
 }
@@ -69,6 +71,7 @@ function loopDays() {
     // generate current day
     var date = currentDate;
     var count = d.stuff.length;
+    counts.push(count);
     totalStuff = totalStuff + count;
     loadDay(date, count);
   });
@@ -133,14 +136,17 @@ function initSelectize() {
   });
 }
 
-function average() {
+function stats() {
   var average = (totalStuff / totalDays).toPrecision(3);
   $('#average').html(average);
+  var best = Math.max.apply(null, counts);
+  $('#best').html(best);
 }
 
 function update() {
   // generate stuffLog
   stuffLog = [];
+  counts = [];
   totalStuff = 0;
   $('select').each(function() {
     // add selected values to thisStuff array
@@ -162,6 +168,7 @@ function update() {
       stuffLog.unshift(entry);
     }
     // keep running total
+    counts.push(count);
     totalStuff = totalStuff + count;
   });
 }
