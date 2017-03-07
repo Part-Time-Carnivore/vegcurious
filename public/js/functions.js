@@ -131,6 +131,7 @@ return 0;
 
 function initSelectize() {
   $('select').selectize({
+    closeAfterSelect: true,
     plugins: ['remove_button']
   });
 }
