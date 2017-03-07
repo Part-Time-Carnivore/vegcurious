@@ -129,11 +129,19 @@ if (a.name > b.name)
 return 0;
 }
 
-// init selectize
 function initSelectize() {
   $('select').selectize({
     plugins: ['remove_button']
   });
+}
+
+function colors(){
+  $.each(veg, function(i, v){
+    $('.item[data-value="' + v.id + '"').css({
+      'background-color':'#' + v.color, 
+      'border-color':'#' + v.color
+    });
+  })
 }
 
 function stats() {
