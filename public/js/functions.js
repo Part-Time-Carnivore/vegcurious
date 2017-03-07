@@ -136,12 +136,18 @@ function initSelectize() {
 }
 
 function colors(){
-  $.each(veg, function(i, v){
-    $('.item[data-value="' + v.id + '"').css({
-      'background-color':'#' + v.color, 
-      'border-color':'#' + v.color
-    });
-  })
+  switch(stuffType) {
+    case 'veg':
+      $.each(veg, function(i, v){
+        $('.item[data-value="' + v.id + '"').css({
+          'background-color':'#' + v.color, 
+          'border-color':'#' + v.color
+        });
+      })
+      break;
+    default:
+      console.log('stuffType "' + stuffType + '" not available');
+  }
 }
 
 function stats() {
