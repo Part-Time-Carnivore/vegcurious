@@ -1,5 +1,5 @@
 body {
-  background-color: #f0f0f0;
+  background-color: #eee;
 }
 
 *,
@@ -15,4 +15,17 @@ main label {
   font-family: 'Droid Sans Mono', monospace;
   display: block;
   margin: .85ch 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+main .item:hover,
+.fade {
+  opacity: .75;
+}
+
+.selectize-control:hover {
+  opacity: 1;
 }

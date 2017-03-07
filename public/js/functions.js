@@ -129,11 +129,22 @@ if (a.name > b.name)
 return 0;
 }
 
+function highlight() {
+  $('.selectize-control').addClass('fade');
+  $('main input:focus').closest('.selectize-control').removeClass('fade');
+}
+
 function initSelectize() {
   $('select').selectize({
     closeAfterSelect: true,
-    plugins: ['remove_button']
+    plugins: ['remove_button'],
+    onItemAdd:function() {
+      $('.selectize-dropdown').addClass('hidden');
+    }
   });
+  $('.selectize-dropdown').addClass('hidden');
+  $('main input').first().focus();
+  highlight();
 }
 
 function colors(){
@@ -156,6 +167,22 @@ function stats() {
   $('#average').html(average);
   var best = Math.max.apply(null, counts);
   $('#best').html(best);
+}
+
+function input(thisInput) {
+  highlight();
+  // show dropdown if there is text in input
+  if (thisInput.val().length > 0) {
+    $('.selectize-dropdown').removeClass('hidden');
+  } else {
+    $('.selectize-dropdown').addClass('hidden');
+  }
+}
+
+function recount(thisSelect) {
+    // recount selected options for this select
+    var count = $("+ .selectize-control .item", thisSelect).length;
+    $("+ .selectize-control + i", thisSelect).html(count);
 }
 
 function update() {
