@@ -17,8 +17,6 @@ $(document).ready(function () {
     storeStuffLog();
     colors();
     stats();
-    // recount selected options for this select
-    var count = $("+ .selectize-control .item", this).length;
-    $("+ .selectize-control + i", this).html(count);
+    recount($(this));
   });
 });
