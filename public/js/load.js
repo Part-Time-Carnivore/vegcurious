@@ -7,7 +7,12 @@ $(document).ready(function () {
   initSelectize();
   colors();
   stats();
-  $("select").on("change", function (e) {
+  // only show options when text is entered
+  $('main input').on('input change focus blur', function(){
+    input($(this));
+  });
+  // update when options have been selected or deselected
+  $("main select").on("change", function () {
     update();
     storeStuffLog();
     colors();
