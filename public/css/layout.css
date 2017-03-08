@@ -1,0 +1,32 @@
+body {
+  font-family: 'Droid Sans Mono', monospace;
+  padding: 2ch 4ch;
+  line-height: 2.2;
+  max-width: 600px;
+  margin:0 auto;
+}
+
+*,
+h1 {
+  margin: 0;
+  font-weight: normal;
+}
+
+.stat,
+main label {
+  text-align: right;
+  margin: .5ch 0;
+  display: block;
+}
+
+i {
+  font-style: normal;
+}
+
+.stat i {
+  font-weight: bold;
+}
+
+.hidden {
+  display: none !important;
+}
