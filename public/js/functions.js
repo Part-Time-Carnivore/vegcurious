@@ -87,12 +87,14 @@ function loadDays() {
       // just load today
       loadDay(today.toISOString().split('T')[0], 0);
   }
-
   // after loading days, add days up to today
   var prevDateFull = getPrevDate(Date());
   while (today - prevDateFull > day) {
       prevDateFull = missingDays(prevDateFull);
   }
+  // replace date for today and yesterday
+  $('main label:first-of-type time').html('Today');
+  $('main label:nth-of-type(2) time').html('Yesterday');
 }
 
 // sort and load stuff options from data
@@ -122,11 +124,11 @@ function loadStuff() {
 
 // sort array of objects alphabetically by comparing item names
 function compare(a,b) {
-if (a.name < b.name)
-  return -1;
-if (a.name > b.name)
-  return 1;
-return 0;
+  if (a.name < b.name)
+    return -1;
+  if (a.name > b.name)
+    return 1;
+  return 0;
 }
 
 function highlight() {
