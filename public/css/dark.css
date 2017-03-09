@@ -1,0 +1,29 @@
+body {
+  color: #ccc;
+  background-color: #000;
+}
+
+main .selectize-control.multi .selectize-input.items {
+  border-bottom: solid 1px #333;
+}
+
+main .selectize-control,
+main .selectize-control.multi .selectize-input>div {
+  color: #000;
+}
+
+main .selectize-control>* {
+    background-color: #eee;
+}
+
+main .fade>* {
+  background-color: #000;
+}
+
+.fade>*:hover {
+  background-color: #222;
+}
+
+main .item:hover {
+  opacity: .75;
+}
