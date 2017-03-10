@@ -19,3 +19,7 @@ main .selectize-control.multi .selectize-input>div {
 main .item:hover {
   opacity: .75;
 }
+
+.forgotten {
+  color: #999;
+}
