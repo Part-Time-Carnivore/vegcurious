@@ -149,13 +149,35 @@ function initSelectize() {
   highlight();
 }
 
+function colorContrast(primary) {
+  //default black secondary
+  secondary = '000';
+  //get primary start values for RGB
+  red = Number(primary[0]);
+  green = Number(primary[2]);
+  blue = Number(primary[4]);
+  //if color is very light, set dark secondary
+  if (isNaN(red) && isNaN(blue) && isNaN(green)) {
+    secondary = '222';
+  // else if colour is very dark, set light secondary
+  } else if (!isNaN(red) && !isNaN(blue) && !isNaN(green))  {
+    secondary = 'eee';
+  //else if colour is quite dark, set white secondary
+  } else if ( (!isNaN(red) && !isNaN(green)) || (!isNaN(red) && !isNaN(blue)) || (!isNaN(green) && !isNaN(blue)) ) {
+    secondary = 'fff';
+  }
+  return(secondary);
+}
+
 function colors(){
   switch(stuffType) {
     case 'veg':
       $.each(veg, function(i, v){
+        var textColor = colorContrast(v.color);
         $('.item[data-value="' + v.id + '"').css({
           'background-color':'#' + v.color, 
-          'border-color':'#' + v.color
+          'border-color':'#' + v.color,
+          'color' : '#' + textColor
         });
       })
       break;
