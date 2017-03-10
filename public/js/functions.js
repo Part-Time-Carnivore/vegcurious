@@ -95,6 +95,22 @@ function loadDays() {
   // replace date for today and yesterday
   $('main label:first-of-type time').html('Today');
   $('main label:nth-of-type(2) time').html('Yesterday');
+  $('main label:nth-of-type(n + 3):nth-of-type(-n + 7) time').each(function(){
+    var dateText = $(this).html().split("-");
+    var d = new Date(dateText[0], dateText[1] - 1, dateText[2]);
+    console.log(d);
+    var weekday = new Array(7);
+    weekday[0] =  "Sunday";
+    weekday[1] = "Monday";
+    weekday[2] = "Tuesday";
+    weekday[3] = "Wednesday";
+    weekday[4] = "Thursday";
+    weekday[5] = "Friday";
+    weekday[6] = "Saturday";
+
+    var dayName = weekday[d.getDay()];
+    $(this).html(dayName);
+  });
 }
 
 // sort and load stuff options from data
