@@ -1,7 +1,8 @@
 .selectize-control {
   display: inline-block;
-  width: calc(100% - 8em);
+  width: calc(100% - 13ch);
   vertical-align: top;
+  text-align: left;
 }
 
 .selectize-dropdown, .selectize-input, .selectize-input input {
@@ -14,10 +15,11 @@
   width: 3ch;
   overflow: hidden;
   white-space: nowrap;
-  margin: 0 1ch 0 0;
+  margin: 0;
   vertical-align: bottom;
-  border-left: .5ch solid #f2f2f2;
-  border-right: .5ch solid #f2f2f2;
+  background-color: #d2d2d2;
+  border-left: .5ch solid #d2d2d2;
+  border-right: .5ch solid #d2d2d2;
 }
 
 .selectize-control.multi .selectize-input>div.active {
@@ -31,6 +33,10 @@
   border-radius: 0;
   box-shadow: none;
   margin: 0;
+}
+
+.selectize-input.dropdown-active::before {
+  background-color: transparent;
 }
 
 .selectize-control.plugin-remove_button [data-value] .remove {
@@ -53,5 +59,17 @@
 }
 
 .selectize-dropdown {
-    position: static;
+  position: static;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.selectize-dropdown-content {
+  max-height: none;
+}
+
+.selectize-input>input {
+  margin: 0 0.5ch !important;
+  min-width: 0.5ch;
 }
