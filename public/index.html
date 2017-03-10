@@ -3,14 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Sample FirebaseUI App</title>
-
-</head>
-<body>
-  <!-- The surrounding HTML is left untouched by FirebaseUI.
-        Your app may use that space for branding, controls and other customizations.-->
-  <h1>Login to Vegcurious</h1>
-  <div id="firebaseui-auth-container"></div>
-    <!--FIREBASE-->
+  <!--FIREBASE-->
   <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
   <script>
     // Initialize Firebase
@@ -46,5 +39,11 @@
     // The start method will wait until the DOM is loaded.
     ui.start('#firebaseui-auth-container', uiConfig);
   </script>
+</head>
+<body>
+  <!-- The surrounding HTML is left untouched by FirebaseUI.
+        Your app may use that space for branding, controls and other customizations.-->
+  <h1>Login to Vegcurious</h1>
+  <div id="firebaseui-auth-container"></div>
 </body>
 </html>
