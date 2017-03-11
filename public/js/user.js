@@ -1,9 +1,9 @@
 function userStatus(user) {
   if (user) {
-    $('.user a').hide;
+    $('.user a').hide();
     $('.user span').html(user.displayName + ', ' + user.email);
   } else {
-    $('.user a').show;
+    $('.user a').show();
     $('.user span').html('');
   }
 }
