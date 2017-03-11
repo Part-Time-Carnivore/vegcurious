@@ -19,6 +19,18 @@ main label {
   display: block;
 }
 
+.selectize-control {
+  display: inline-block;
+  width: calc(100% - 13ch);
+  vertical-align: top;
+  text-align: left;
+}
+
+.forgotten {
+  padding: 0 0.5ch;
+  float: right;
+}
+
 i {
   font-style: normal;
 }

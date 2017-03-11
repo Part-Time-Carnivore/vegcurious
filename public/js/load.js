@@ -6,6 +6,7 @@ $(document).ready(function () {
   loadStuff();
   initSelectize();
   colors();
+  forget();
   stats();
   // only show options when text is entered
   $('main input').on('input change focus blur', function(){
@@ -13,10 +14,11 @@ $(document).ready(function () {
   });
   // update when options have been selected or deselected
   $("main select").on("change", function () {
+    recount($(this));
+    forget();
     update();
     storeStuffLog();
     colors();
     stats();
-    recount($(this));
   });
 });

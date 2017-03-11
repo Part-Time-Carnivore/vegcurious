@@ -1,17 +1,10 @@
-.selectize-control {
-  display: inline-block;
-  width: calc(100% - 13ch);
-  vertical-align: top;
-  text-align: left;
-}
-
 .selectize-dropdown, .selectize-input, .selectize-input input {
   line-height: inherit;
   font-size: inherit;
   color: inherit;
 }
 
-.selectize-control.multi .selectize-input>div {
+.selectize-control.multi .selectize-input>.item {
   width: 3ch;
   overflow: hidden;
   white-space: nowrap;
