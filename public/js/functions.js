@@ -4,6 +4,7 @@ today = new Date();
 stuffType = '';
 stuffLog = [];
 totalDays = 0;
+forgottenDays = 0;
 counts = [];
 totalStuff = 0;
 
@@ -44,17 +45,16 @@ function getPrevDate(currentDate) {
 
 // load days function
 function loadDay(date, count) {
-  $('main').prepend('<label for="' + date + '"><time>' + date + '</time> <select id="' + date + '" multiple="multiple"><option value="" disabled selected style="display: none;">+</option></select> <i>' + count + '</i></label>');
+  $('main').prepend('<label for="' + date + '"><time>' + date + '</time> <select id="' + date + '" multiple="multiple"><option value="" disabled selected style="display: none;"></option></select> <i>' + count + '</i></label>');
   counts.push(count);
-  totalDays = totalDays + 1;
+  totalDays++;
 }
 
 // add missing days function
 function missingDays(prevDateFull) {
   var dateFull = new Date(prevDateFull.getTime() + day);
   var date = dateFull.toISOString().split('T')[0];
-  var count = 0;
-  loadDay(date, count);
+  loadDay(date, 0);
   return dateFull;
 }
 
@@ -72,7 +72,7 @@ function loopDays() {
     var date = currentDate;
     var count = d.stuff.length;
     counts.push(count);
-    totalStuff = totalStuff + count;
+    totalStuff += count;
     loadDay(date, count);
   });
 }
@@ -95,6 +95,19 @@ function loadDays() {
   // replace date for today and yesterday
   $('main label:first-of-type time').html('Today');
   $('main label:nth-of-type(2) time').html('Yesterday');
+  $('main label:nth-of-type(n+3):nth-of-type(-n+7) time').each(function(){
+    var d = new Date($(this).html());
+    var weekday = new Array(7);
+    weekday[0] = 'Sunday';
+    weekday[1] = 'Monday';
+    weekday[2] = 'Tuesday';
+    weekday[3] = 'Wednesday';
+    weekday[4] = 'Thursday';
+    weekday[5] = 'Friday';
+    weekday[6] = 'Saturday';
+    var dayName = weekday[d.getDay()];
+    $(this).html(dayName);
+  });
 }
 
 // sort and load stuff options from data
@@ -186,8 +199,24 @@ function colors(){
   }
 }
 
+function forget() {
+  forgottenDays = 0;
+  $('main label:nth-of-type(n+3) i').each(function() {
+    var count = $(this).html();
+    if (count == '0') {
+      $(this).html('&nbsp')
+      $(this).prev().children('.items').prepend('<span class="forgotten">Forgotten</span>');
+      forgottenDays++;
+    } else if (isNaN(count)) {
+      forgottenDays++;
+    } else {
+      $(this).prev().find('.forgotten').remove();
+    }
+  });
+}
+
 function stats() {
-  var average = (totalStuff / totalDays).toPrecision(3);
+  var average = (totalStuff / (totalDays - forgottenDays)).toPrecision(3);
   $('#average').html(average);
   var best = Math.max.apply(null, counts);
   $('#best').html(best);
@@ -205,8 +234,8 @@ function input(thisInput) {
 
 function recount(thisSelect) {
     // recount selected options for this select
-    var count = $("+ .selectize-control .item", thisSelect).length;
-    $("+ .selectize-control + i", thisSelect).html(count);
+    var count = $('+ .selectize-control .item', thisSelect).length;
+    $('+ .selectize-control + i', thisSelect).html(count);
 }
 
 function update() {
@@ -214,16 +243,18 @@ function update() {
   stuffLog = [];
   counts = [];
   totalStuff = 0;
-  $('select').each(function() {
+  dayNum = 0;
+  $('main select').each(function() {
+    dayNum++;
     // add selected values to thisStuff array
     var thisStuff = []
     $('option:selected', this).each(function() {
       var stuff = parseInt(this.value)
       thisStuff.push(stuff);
     });
-    // only get date and add to stuffLog if there is thisStuff contains values
-    var count = thisStuff.length;
-    if (count != 0) {
+    // only get date and add to stuffLog if count is not 0 for today and tomorrow, or forgotten
+    var count = Number($(this).parent().find('i').html());
+    if (count > 0 || (dayNum > 2 && !isNaN(count))) {
       // get date
       var thisDate = $(this).attr('id');
       // create entry object
@@ -234,7 +265,9 @@ function update() {
       stuffLog.unshift(entry);
     }
     // keep running total
-    counts.push(count);
-    totalStuff = totalStuff + count;
+    if (!isNaN(count)) {
+      counts.push(count);
+      totalStuff += count;
+    }
   });
 }
