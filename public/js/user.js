@@ -1,4 +1,4 @@
-function userStatus(user) {
+function userState(user) {
   if (user) {
     $('.user a').hide();
     $('.user span').html(user.displayName);
@@ -8,7 +8,7 @@ function userStatus(user) {
   }
 }
 
-userStatus(firebase.auth().currentUser);
+userState(firebase.auth().currentUser);
 firebase.auth().onAuthStateChanged(function(user) {
-  userStatus(user);
+  userState(user);
 });
