@@ -9,4 +9,6 @@ function userStatus(user) {
 }
 
 userStatus(firebase.auth().currentUser);
-firebase.auth().onAuthStateChanged(userStatus(user));
+firebase.auth().onAuthStateChanged(function(user) {
+  userStatus(user);
+});
