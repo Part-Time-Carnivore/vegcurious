@@ -1,7 +1,7 @@
 branches:
   only:
     - develop
-    - "11""
+    - "11"
 language: node_js
 node_js:
   - "4.4"
