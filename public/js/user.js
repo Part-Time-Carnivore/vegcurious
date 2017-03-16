@@ -1,7 +1,14 @@
-firebase.auth().onAuthStateChanged(function(user) {
+function userState(user) {
   if (user) {
-    $('.user').html(user.displayName + ', ' + user.email);
+    $('.user a').hide();
+    $('.user span').html(user.displayName);
   } else {
-    $('user').html('Log in');
+    $('.user a').show();
+    $('.user span').html('');
   }
+}
+
+userState(firebase.auth().currentUser);
+firebase.auth().onAuthStateChanged(function(user) {
+  userState(user);
 });

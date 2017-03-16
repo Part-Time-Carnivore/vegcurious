@@ -12,6 +12,12 @@ h1 {
   font-weight: normal;
 }
 
+h1 {
+  float: left;
+  line-height: 1.15;
+}
+
+.user,
 .stat,
 main label {
   text-align: right;

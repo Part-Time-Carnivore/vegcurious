@@ -1,39 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Sample FirebaseUI App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>vegcurious</title>
+
+  <!--PLUGINS JS-->
+  <script src="plugins/jquery.min.3.1.1.js"></script>
+  <script src="plugins/selectize.standalone.min.0.12.4.js"></script>
+
+  
   <!--FIREBASE-->
   <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
 	<script src="js/firebase-config.js"></script>
-  <!--FIREBASE AUTH UI-->
-  <script src="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.js"></script>
-  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.css" />
-  <script type="text/javascript">
-    // FirebaseUI config.
-    var uiConfig = {
-      signInSuccessUrl: 'veg.html',
-      signInOptions: [
-        // Leave the lines as is for the providers you want to offer your users.
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        //firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-        //firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-        //firebase.auth.GithubAuthProvider.PROVIDER_ID,
-        firebase.auth.EmailAuthProvider.PROVIDER_ID
-      ],
-      // Terms of service url.
-      tosUrl: '<your-tos-url>'
-    };
-    // Initialize the FirebaseUI Widget using Firebase.
-    var ui = new firebaseui.auth.AuthUI(firebase.auth());
-    // The start method will wait until the DOM is loaded.
-    ui.start('#firebaseui-auth-container', uiConfig);
-  </script>
+
+  <!--APP JS-->
+  <script src="data/veg.js"></script>
+	<script src="js/functions.js"></script>
+	<script src="js/app.js"></script>
+  <script src="js/user.js"></script>
+
+  <!--PLIUGINS CSS-->
+  <link rel="stylesheet" href="plugins/normalize.min.5.0.0.css">
+  <link rel="stylesheet" href="plugins/selectize.min.0.12.4.css">
+  
+  <!--FONTS-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono">
+  
+  <!--APP CSS-->
+  <link rel="stylesheet" href="css/normalize-selectize.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/light.css">
 </head>
+
 <body>
-  <!-- The surrounding HTML is left untouched by FirebaseUI.
-        Your app may use that space for branding, controls and other customizations.-->
-  <h1>Login to Vegcurious</h1>
-  <div id="firebaseui-auth-container"></div>
+  <h1>Vegcurious</h1>
+  <p class="user"><a href="login.html">Login</a><span></span></p>
+  <p class="stat">Average: <i id="average"></i> Personal Best: <i id="best"></i></p>
+  <main id="veg"></main>
 </body>
+
 </html>

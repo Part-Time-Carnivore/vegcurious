@@ -3,7 +3,7 @@ branches:
     - develop
 language: node_js
 node_js:
-  - "4.4"
+  - "6"
 script:
   - echo "Deploying!"
 install:
