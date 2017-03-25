@@ -8,6 +8,8 @@
 
   <!--PLUGINS JS-->
   <script src="plugins/vue@2.2.4.js"></script>
+  <script src="plugins/jquery.min.3.1.1.js"></script>
+  <script src="plugins/selectize.standalone.min.0.12.4.js"></script>
   
   <!--FIREBASE-->
   <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
@@ -15,8 +17,10 @@
 
   <!--APP JS-->
   <script src="data/veg.js"></script>
-	<script src="js/main.js"></script>
+	<!--<script src="js/functions.js"></script>
+	<script src="js/app.js"></script>-->
   <script src="js/user.js"></script>
+	<script src="js/components/tracker-day.js"></script>
 
   <!--PLIUGINS CSS-->
   <link rel="stylesheet" href="plugins/normalize.min.5.0.0.css">
@@ -35,7 +39,14 @@
   <h1>Vegcurious</h1>
   <p class="user"><a href="login.html">Login</a><span></span></p>
   <p class="stat">Average: <i id="average"></i> Personal Best: <i id="best"></i></p>
-  <main id="veg"></main>
+  <main id="veg">
+    <p>Average: <span>{{stats.ave}}</span> - Personal Best: <span>{{stats.pb}}</span></p>
+    <tracker-day v-for="day in log" :key="day.date" :id="day.date" :selected="day.stuff">{{day.stuff}}</tracker-day>
+  </main>
+
+  <!-- Vue -->
+	<script src="js/main.js"></script>
 </body>
 
 </html>
+

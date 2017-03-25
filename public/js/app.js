@@ -2,8 +2,8 @@ $(document).ready(function () {
   stuffType = $('main').attr('id');
   getStuffLog();
   loadDays();
-  loadOptions();
-  loadStuff();
+  //loadOptions();
+  //loadStuff();
   initSelectize();
   colors();
   forget();
