@@ -1,97 +1,21 @@
 // global variables
 day = 24*60*60*1000;
-today = new Date();
-stuffType = '';
-stuffLog = [];
+today = new Date().toISOString().split('T')[0];
+yesterday = new Date((new Date().valueOf() - day)).toISOString().split('T')[0];
 totalDays = 0;
 forgottenDays = 0;
 counts = [];
 totalStuff = 0;
 
-// get stuffLog from localstorage
-function getStuffLog() {
-  switch(stuffType) {
-    case 'veg':
-      if (window.localStorage && localStorage.vegLog) {
-        stuffLog = JSON.parse(localStorage['vegLog']);
-      }
-      break;
-    default:
-      console.log('stuffType "' + stuffType + '" not available');
-  }
-}
-
 // update localstorage
 function storeStuffLog() {
-  switch(stuffType) {
-    case 'veg':
-      if (window.localStorage) {
+    if (window.localStorage) {
         localStorage.setItem('vegLog', JSON.stringify(stuffLog));
-      }
-      break;
-    default:
-      console.log('stuffType "' + stuffType + '" not available');
-  }
-}
-
-// set previous date function
-function getPrevDate(currentDate) {
-  var prevDate = $('select:first-of-type').attr('id');
-  // if no days added yet set prev to current
-  if (prevDate == null) prevDate = currentDate;
-  var prevDateFull = new Date(prevDate);
-  return prevDateFull;
-}
-
-// load days function
-function loadDay(date, count) {
-  $('main').prepend('<label for="' + date + '"><time>' + date + '</time> <select id="' + date + '" multiple="multiple"><option value="" disabled selected style="display: none;"></option></select> <i>' + count + '</i></label>');
-  counts.push(count);
-  totalDays++;
-}
-
-// add missing days function
-function missingDays(prevDateFull) {
-  var dateFull = new Date(prevDateFull.getTime() + day);
-  var date = dateFull.toISOString().split('T')[0];
-  loadDay(date, 0);
-  return dateFull;
-}
-
-// loop through days function
-function loopDays() {
-  stuffLog.forEach(function(d) {
-    var currentDate = d.date;
-    var currentDateFull = new Date(currentDate);
-    var prevDateFull = getPrevDate(currentDate);
-    // check if there's a gap between days
-    while (currentDateFull - prevDateFull > day) {
-    prevDateFull = missingDays(prevDateFull);
     }
-    // generate current day
-    var date = currentDate;
-    var count = d.stuff.length;
-    counts.push(count);
-    totalStuff += count;
-    loadDay(date, count);
-  });
 }
 
 // loop days and load up to today
-function loadDays() {
-  // if there is data in stuffLog
-  if (stuffLog.length) {
-      // load all days
-      loopDays();
-  } else {
-      // just load today
-      loadDay(today.toISOString().split('T')[0], 0);
-  }
-  // after loading days, add days up to today
-  var prevDateFull = getPrevDate(Date());
-  while (today - prevDateFull > day) {
-      prevDateFull = missingDays(prevDateFull);
-  }
+function loadDays(log) {
   // replace date for today and yesterday
   $('main label:first-of-type time').html('Today');
   $('main label:nth-of-type(2) time').html('Yesterday');
@@ -107,31 +31,6 @@ function loadDays() {
     weekday[6] = 'Saturday';
     var dayName = weekday[d.getDay()];
     $(this).html(dayName);
-  });
-}
-
-// sort and load stuff options from data
-function loadOptions() {
-  switch(stuffType) {
-    case 'veg':
-      // sort veg
-      veg.sort(compare);
-      // load veg options
-      veg.forEach(function(v) {
-        $('select').append('<option value="' + v.id + '">' + v.name + '</option>')
-      });
-      break;
-    default:
-      console.log('stuffType "' + stuffType + '" not available');
-  }
-}
-
-// load stuff from stuffLog
-function loadStuff() {
-  stuffLog.forEach(function(d) {
-    d.stuff.forEach(function(s) {
-      $('#' + d.date + ' option[value="' + s + '"]').attr('selected', 'selected');
-    });
   });
 }
 
