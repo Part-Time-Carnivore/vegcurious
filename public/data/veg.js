@@ -49,3 +49,13 @@ var veg = [
     { id: 48, name: 'Pulses / Beans / Lentils / Chickpeas', color: 'ed975a' },
     { id: 49, name: 'Celery', color: 'c5e59e' }
 ];
+
+function compare(a,b) {
+  if (a.name < b.name)
+    return -1;
+  if (a.name > b.name)
+    return 1;
+  return 0;
+}
+
+veg.sort(compare);

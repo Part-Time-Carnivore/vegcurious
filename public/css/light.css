@@ -1,19 +1,23 @@
-body,
-.fade>* {
+body {
   color: #666;
   background-color: #eee;
 }
 
 main .selectize-control.multi .selectize-input.items {
   border-bottom: solid 1px #ddd;
+  background-color: inherit;
+}
+
+main .selectize-control.multi .selectize-input.items:hover {
+  background-color: #f6f6f6;
+}
+
+main .selectize-control.multi .selectize-input.highlight {
+  background-color: white;
 }
 
 main .selectize-control.multi .selectize-input>div {
   color: #000;
-}
-
-.fade>*:hover {
-  background-color: #f6f6f6;
 }
 
 main .item:hover {

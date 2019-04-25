@@ -1,64 +1,4 @@
-// global variables
-day = 24*60*60*1000;
-today = new Date().toISOString().split('T')[0];
-yesterday = new Date((new Date().valueOf() - day)).toISOString().split('T')[0];
-totalDays = 0;
-forgottenDays = 0;
-counts = [];
-totalStuff = 0;
-
-// update localstorage
-function storeStuffLog() {
-    if (window.localStorage) {
-        localStorage.setItem('vegLog', JSON.stringify(stuffLog));
-    }
-}
-
-// loop days and load up to today
-function loadDays(log) {
-  // replace date for today and yesterday
-  $('main label:first-of-type time').html('Today');
-  $('main label:nth-of-type(2) time').html('Yesterday');
-  $('main label:nth-of-type(n+3):nth-of-type(-n+7) time').each(function(){
-    var d = new Date($(this).html());
-    var weekday = new Array(7);
-    weekday[0] = 'Sunday';
-    weekday[1] = 'Monday';
-    weekday[2] = 'Tuesday';
-    weekday[3] = 'Wednesday';
-    weekday[4] = 'Thursday';
-    weekday[5] = 'Friday';
-    weekday[6] = 'Saturday';
-    var dayName = weekday[d.getDay()];
-    $(this).html(dayName);
-  });
-}
-
-// sort array of objects alphabetically by comparing item names
-function compare(a,b) {
-  if (a.name < b.name)
-    return -1;
-  if (a.name > b.name)
-    return 1;
-  return 0;
-}
-
 function highlight() {
-  $('.selectize-control').addClass('fade');
-  $('main input:focus').closest('.selectize-control').removeClass('fade');
-}
-
-function initSelectize() {
-  $('select').selectize({
-    closeAfterSelect: true,
-    plugins: ['remove_button'],
-    onItemAdd:function() {
-      $('.selectize-dropdown').addClass('hidden');
-    }
-  });
-  $('.selectize-dropdown').addClass('hidden');
-  $('main input').first().focus();
-  highlight();
 }
 
 function colorContrast(primary) {
@@ -122,13 +62,7 @@ function stats() {
 }
 
 function input(thisInput) {
-  highlight();
-  // show dropdown if there is text in input
-  if (thisInput.val().length > 0) {
-    $('.selectize-dropdown').removeClass('hidden');
-  } else {
-    $('.selectize-dropdown').addClass('hidden');
-  }
+
 }
 
 function recount(thisSelect) {

@@ -19,7 +19,7 @@
     <script src="data/veg.js"></script>
     <script src="js/functions.js"></script>
     <script src="js/user.js"></script>
-	<script src="js/components/tracker-day.js"></script>
+    <script src="js/components/tracker-day.js"></script>
 
     <!--PLIUGINS CSS-->
     <link rel="stylesheet" href="plugins/normalize.min.5.0.0.css">
@@ -36,10 +36,19 @@
 
 <body>
     <h1>Vegcurious</h1>
-    <p class="user"><a href="login.html">Login</a><span></span></p>
-    <p class="stat">Average: <i id="average"></i> Personal Best: <i id="best"></i></p>
+    <p class="user">
+        <a href="login.html">Login</a>
+        <span></span>
+    </p>
+    <p class="stat">Average:
+        <i id="average"></i> Personal Best:
+        <i id="best"></i>
+    </p>
     <main>
-        <p>Average: <span>{{stats.ave}}</span> - Personal Best: <span>{{stats.pb}}</span></p>
+        <p>Average:
+            <span>{{stats.ave}}</span> - Personal Best:
+            <span>{{stats.pb}}</span>
+        </p>
         <tracker-day v-for="day in completeLog" :key="day.date" :id="day.date" :selected="day.stuff">{{day.stuff}}</tracker-day>
     </main>
 
@@ -48,4 +57,3 @@
 </body>
 
 </html>
-

@@ -1,3 +1,8 @@
+// global variables
+day = 24*60*60*1000;
+today = new Date().toISOString().split('T')[0];
+yesterday = new Date((new Date().valueOf() - day)).toISOString().split('T')[0];
+
 var main = new Vue({
     el: 'main',
     data: {
@@ -23,10 +28,42 @@ var main = new Vue({
             };
         }
     },
+    methods: {
+        updateLog: function() {
+            
+            //update the log (omitting forgotten days) and update local storage
+            return this.completeLog;
+        },
+        initSelectize: function () {
+            $('select').selectize({
+                closeAfterSelect: true,
+                plugins: ['remove_button'],
+                onItemAdd:function() {
+                $('.selectize-dropdown').addClass('hidden');
+                }
+            });
+            $('.selectize-dropdown').addClass('hidden');
+        },
+        dayNames: function() {
+            // replace date for today and yesterday
+            $('main label:first-of-type time').html('Today');
+            $('main label:nth-of-type(2) time').html('Yesterday');
+            $('main label:nth-of-type(n+3):nth-of-type(-n+7) time').each(function(){
+                var d = new Date($(this).html());
+                var weekday = new Array(7);
+                weekday[0] = 'Sunday';
+                weekday[1] = 'Monday';
+                weekday[2] = 'Tuesday';
+                weekday[3] = 'Wednesday';
+                weekday[4] = 'Thursday';
+                weekday[5] = 'Friday';
+                weekday[6] = 'Saturday';
+                var dayName = weekday[d.getDay()];
+                $(this).html(dayName);
+            });
+        }
+    },
     created: function() {
-        
-        // sort stuff
-        this.stuff.sort(compare);
         
         // check for log in local storage
         if (window.localStorage && localStorage.vegLog) {
@@ -69,11 +106,21 @@ var main = new Vue({
             this.completeLog = logArray;
         }
     },
-    methods: {
-        updateLog: function() {
-            
-            //update the log (omitting forgotten days) and update local storage
-            return this.completeLog;
-        }
+    mounted: function () {
+        this.dayNames();
+        this.initSelectize();
+        // only show options when text is entered
+        $('main input').on('input change focus blur', function(){
+            $('main input:focus').closest('.items')
+                .addClass('highlight')
+                .closest('label').siblings().find('.items')
+                .removeClass('highlight');
+            // show dropdown if there is text in input
+            if ($(this).val().length > 0) {
+                $('.selectize-dropdown').removeClass('hidden');
+            } else {
+                $('.selectize-dropdown').addClass('hidden');
+            }
+        });
     }
 });
